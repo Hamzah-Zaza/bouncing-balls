@@ -1,14 +1,18 @@
+<!-- HTML Structure -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    /* Styling for the entire body */
     body {
       overflow: hidden;
       margin: 0;
     }
 
+    /* Styling for the bouncing balls */
     .ball {
       width: 50px;
       height: 50px;
@@ -16,10 +20,12 @@
       position: absolute;
     }
 
+    /* Container styling for the balls */
     #container {
       position: relative;
     }
 
+    /* Styling for the "Add Ball" and "Remove Ball" buttons */
     #add-button,
     #remove-button {
       background-color: #27ae60;
@@ -33,6 +39,7 @@
       transition: background-color 0.3s ease;
     }
 
+    /* Button hover effects */
     #add-button:hover {
       background-color: #218c54;
     }
@@ -45,14 +52,20 @@
 </head>
 <body>
 
+<!-- Container to hold the bouncing balls -->
 <div id="container"></div>
+
+<!-- Buttons to add and remove balls -->
 <button id="add-button" onclick="addBall()">Add Ball</button>
 <button id="remove-button" onclick="removeBall()">Remove Ball</button>
 
+<!-- JavaScript code for ball creation and animation -->
 <script>
+  // JavaScript code for the bouncing balls
   const container = document.getElementById('container');
   const balls = [];
 
+  // Function to generate a random color for the balls
   function getRandomColor() {
     const letters = '0123456789ABCDEF';
     let color = '#';
@@ -62,16 +75,19 @@
     return color;
   }
 
+  // Function to generate a random speed for the balls
   function getRandomSpeed() {
     return Math.floor(Math.random() * 5) + 1; // Random speed between 1 and 5
   }
 
+  // Function to generate a random starting position for the balls
   function getRandomPosition() {
     const x = Math.random() * (window.innerWidth - 50); // Adjusted to keep the ball fully visible
     const y = Math.random() * (window.innerHeight - 50); // Adjusted to keep the ball fully visible
     return { x, y };
   }
 
+  // Function to create a new ball
   function createBall() {
     if (balls.length >= 5) {
       alert("You can't add more than 5 balls.");
@@ -80,6 +96,7 @@
 
     const position = getRandomPosition();
 
+    // Create a new ball element
     const ball = document.createElement('div');
     ball.className = 'ball';
     ball.style.backgroundColor = getRandomColor();
@@ -87,6 +104,7 @@
     ball.style.top = position.y + 'px';
     container.appendChild(ball);
 
+    // Ball object with properties for animation
     const ballObj = {
       element: ball,
       x: position.x,
@@ -100,6 +118,7 @@
     moveBall(ballObj);
   }
 
+  // Function to animate the ball's movement
   function moveBall(ballObj) {
     ballObj.x += ballObj.speed * ballObj.xDirection; // Update x position
     ballObj.y += ballObj.speed * ballObj.yDirection; // Update y position
@@ -121,10 +140,12 @@
     requestAnimationFrame(() => moveBall(ballObj));
   }
 
+  // Function to add a new ball when the "Add Ball" button is clicked
   function addBall() {
     createBall();
   }
 
+  // Function to remove a ball when the "Remove Ball" button is clicked
   function removeBall() {
     if (balls.length > 0) {
       const removedBall = balls.pop();
@@ -132,7 +153,7 @@
     }
   }
 
-  // Example: Create an initial ball
+  // Example: Create an initial ball when the page loads
   createBall();
 </script>
 
