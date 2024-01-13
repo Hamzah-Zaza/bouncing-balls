@@ -19,7 +19,7 @@ This project showcases the principles of web animation and interactivity, provid
 1. Clone the repository:
 
     ```bash
-    
+    https://github.com/Hamzah-Zaza/bouncing-balls.git
     ```
 
 2. Open the `index.html` file in your web browser.
